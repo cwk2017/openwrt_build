@@ -28,7 +28,8 @@ env:
   DIY_SH: diy.sh
   FREE_UP_DISK: false
   SSH_ACTIONS: true
-  UPLOAD_BIN_DIR: false
+  UPLOAD_BIN_DIR: true
+  UPLOAD_DL_DIR: true
   UPLOAD_FIRMWARE: true
   TZ: Asia/Shanghai
 
@@ -104,7 +105,14 @@ jobs:
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
         name: OpenWrt_directory
-        path: openwrt/bin
+        path: openwrt/bin 
+    
+    - name: Upload dl directory
+      uses: actions/upload-artifact@master
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_DL_DIR == 'true'
+      with:
+        name: OpenWrt_dl
+        path: openwrt/dl
 
     - name: Organize files
       id: organize
