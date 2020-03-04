@@ -92,6 +92,13 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
+    - name: Upload dl directory
+      uses: actions/upload-artifact@master
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_DL_DIR == 'true'
+      with:
+        name: OpenWrt_dl
+        path: openwrt/dl
+
     - name: Compile the firmware
       id: compile
       run: |
@@ -107,12 +114,6 @@ jobs:
         name: OpenWrt_directory
         path: openwrt/bin 
     
-    - name: Upload dl directory
-      uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_DL_DIR == 'true'
-      with:
-        name: OpenWrt_dl
-        path: openwrt/dl
 
     - name: Organize files
       id: organize
