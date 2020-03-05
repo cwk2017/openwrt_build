@@ -22,7 +22,7 @@ on:
 #    types: [started]
 
 env:
-  REPO_URL: https://github.com/Baumgartl/openwrt-xiaomi-mir3.git
+  REPO_URL: https://github.com/Baumgartl/openwrt-xiaomi-mir3
   # https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   CONFIG_FILE: .config
