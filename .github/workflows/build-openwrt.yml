@@ -22,7 +22,7 @@ on:
 #    types: [started]
 
 env:
-  REPO_URL: https://github.com/Baumgartl/openwrt-xiaomi-mir3
+  REPO_URL: https://github.com/daozhuanliunian/lede
   REPO_BRANCH: master
   CONFIG_FILE: .config
   DIY_SH: diy.sh
@@ -62,8 +62,8 @@ jobs:
         sudo -E apt-get -qq clean
 
     - name: Clone source code
-      # run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-      run: git clone --depth 1  $REPO_URL  openwrt
+                                                                                    run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+      # run: git clone --depth 1  $REPO_URL  openwrt
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
