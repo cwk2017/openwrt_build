@@ -23,7 +23,8 @@ on:
 #    types: started
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://github.com/daozhuanliunian/lede
+  #https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
@@ -58,14 +59,13 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         curl -fsSL https://raw.githubusercontent.com/P3TERX/dotfiles/master/.bashrc >> ~/.bashrc
     - name: Clone source code
-      run: git clone https://github.com/daozhuanliunian/lede
-      #--depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+      run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
-  #  - name: Load custom feeds
-  #    run: |
-  #      chmod +x $DIY_P1_SH
-  #      cd openwrt
-  #      ../$DIY_P1_SH
+    - name: Load custom feeds
+      run: |
+        chmod +x $DIY_P1_SH
+        cd openwrt
+        ../$DIY_P1_SH
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
